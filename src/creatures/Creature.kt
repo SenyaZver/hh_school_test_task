@@ -48,9 +48,6 @@ abstract class Creature (
         opponent: Creature,
         damageCalculator: DamageCalculator = DamageCalculatorImpl()
     ) {
-        val attackModifier = this.attack - opponent.defense + 1
-        println("Attack Modifier is $attackModifier")
-
         val damage = damageCalculator.calculateDamage(this, opponent)
 
         if (damage != null) {

@@ -8,6 +8,7 @@ class DamageCalculatorImpl: DamageCalculator {
     override fun calculateDamage(attacker: Creature, defender: Creature): Int? {
 
         val attackModifier = attacker.attack - defender.defense + 1
+        println("Attack Modifier is $attackModifier")
 
         for (i in 0 until attackModifier) {
             val chance = (1..6).random()
