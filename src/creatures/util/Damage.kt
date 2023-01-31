@@ -1,5 +1,6 @@
 package creatures.util
 
+import Constants.maxHealth
 
 
 class Damage(
@@ -7,7 +8,7 @@ class Damage(
     private val maxDamage: Int
 ) {
     init {
-        if (minDamage < 0 || maxDamage < minDamage) {
+        if (minDamage < 0 || maxDamage < minDamage || maxDamage > maxHealth) {
             throw IllegalArgumentException()
         }
     }
