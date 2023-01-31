@@ -27,13 +27,18 @@ class Player(
         opponent: Creature,
         damageCalculator: DamageCalculator
     ) {
-        println("Player tries to attack!")
+        if (isAlive) {
+            println("Player tries to attack!")
+        }
         super.attack(opponent, damageCalculator)
     }
 
-    override fun recieveDamage(damage: Int) {
-        println("Player recieves $damage damage!")
-        super.recieveDamage(damage)
+    override fun receiveDamage(damage: Int) {
+        if (isAlive) {
+            println("Player receives $damage damage!")
+        }
+
+        super.receiveDamage(damage)
 
         if (this.health == 0) {
             println("Player died!")

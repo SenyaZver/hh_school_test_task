@@ -48,11 +48,15 @@ abstract class Creature (
         opponent: Creature,
         damageCalculator: DamageCalculator = DamageCalculatorImpl()
     ) {
+        if (!isAlive) {
+            return
+        }
+
         val damage = damageCalculator.calculateDamage(this, opponent)
 
         if (damage != null) {
             println("Attack is successful! $damage damage was dealt!")
-            opponent.recieveDamage(damage)
+            opponent.receiveDamage(damage)
 
             return
         }
@@ -61,9 +65,11 @@ abstract class Creature (
 
     }
 
-    open fun recieveDamage(damage: Int) {
+    open fun receiveDamage(damage: Int) {
+        if (!isAlive) return
+
         health-=damage
-        if (health <=0) {
+        if (health <= 0) {
             health = 0
 
             isAlive = false

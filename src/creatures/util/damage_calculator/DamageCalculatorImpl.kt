@@ -10,7 +10,9 @@ class DamageCalculatorImpl: DamageCalculator {
         val attackModifier = attacker.attack - defender.defense + 1
         println("Attack Modifier is $attackModifier")
 
-        for (i in 0 until attackModifier) {
+        val amountOfRolls = 1.coerceAtLeast(attackModifier)
+
+        for (i in 0 until amountOfRolls) {
             val chance = (1..6).random()
 
             if (chance >= chanceCutOff) {

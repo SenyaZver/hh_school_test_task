@@ -9,8 +9,8 @@ import creatures.util.damage_calculator.TestDamageCalculator
 class Tester {
 
 
-    fun executeTests() {
-        `initialisation test`()
+    fun executeAllTests() {
+        `incorrect initialisation test`()
         println()
 
         attackTest()
@@ -19,15 +19,15 @@ class Tester {
         `attack test (creature is dead)`()
         println()
 
-        healTest()
+        damageTest()
         println()
 
-        damageTest()
+        healTest()
         println()
 
     }
 
-    fun `initialisation test`() {
+    fun `incorrect initialisation test`() {
         println("//Starting Initialisation test//")
 
         try {
@@ -94,7 +94,9 @@ class Tester {
             damageCalculator = TestDamageCalculator(damageToDeal = 10)
         )
 
+
         if (player.isAlive) {
+
             println("//Attack test (creature is dead) failed//")
         } else {
             println("//Attack test (creature is dead) passed//")
@@ -103,29 +105,6 @@ class Tester {
 
     }
 
-    fun healTest() {
-        println("//Starting heal test//")
-
-        val player = Player(
-            defense = 2,
-            attack = 10,
-            damage = Damage(1, 10),
-            health = 100
-        )
-
-        println("Player has ${player.health} health!")
-
-        player.recieveDamage(80)
-
-        player.heal()
-
-        if (player.health == 70) {
-            println("//Heal test passed//")
-        } else {
-            println("//Heal test failed//")
-        }
-
-    }
 
     fun damageTest() {
         println("//Starting damage test//")
@@ -139,7 +118,7 @@ class Tester {
 
         println("Player has ${player.health} health!")
 
-        player.recieveDamage(80)
+        player.receiveDamage(80)
 
         if (player.health == 20) {
             println("//Damage test passed//")
@@ -147,5 +126,31 @@ class Tester {
             println("//Damage test failed//")
         }
     }
+
+
+    fun healTest() {
+        println("//Starting heal test//")
+
+        val player = Player(
+            defense = 2,
+            attack = 10,
+            damage = Damage(1, 10),
+            health = 100
+        )
+
+        println("Player has ${player.health} health!")
+
+        player.receiveDamage(80)
+
+        player.heal()
+
+        if (player.health == 70) {
+            println("//Heal test passed//")
+        } else {
+            println("//Heal test failed//")
+        }
+
+    }
+
 
 }
